@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Worcester-Springfield</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script type="text/javascript" src="https://unpkg.com/vis-network@9.1.0/dist/vis-network.min.js"></script>
+    
+    <style>
+        /* Main Page Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #111827;
+            color: #e5e7eb;
+        }
+        .cool-button { transition: all 0.3s ease; box-shadow: 0 4px 15px 0 rgba(72, 124, 255, 0.4); }
+        .cool-button:hover { transform: translateY(-3px); box-shadow: 0 8px 25px 0 rgba(72, 124, 255, 0.6); }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.8s ease-out, transform 0.8s ease-out; }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #1f2937; }
+        ::-webkit-scrollbar-thumb { background: #4a5568; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6b7280; }
+        .chc-toggle-label { cursor: pointer; padding: 0.5rem 1rem; border: 1px solid #4b5563; border-radius: 0.5rem; transition: background-color 0.2s, color 0.2s; }
+        input[type="radio"].chc-toggle:checked + .chc-toggle-label { background-color: #3b82f6; color: #ffffff; border-color: #3b82f6; }
+
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- 1. Home Page Section -->
+    <header id="home" class="h-screen w-full flex flex-col justify-center items-center text-center p-4 bg-gray-900">
+        <h1 class="text-5xl md:text-7xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-8">
+            Team Worcester-Springfield
+        </h1>
+        <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+            <a href="#statistical-area" class="cool-button bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg">
+                Statistical Area
+            </a>
+            <a href="#division" class="cool-button bg-purple-600 text-white font-bold py-3 px-8 rounded-lg text-lg">
+                Division
+            </a>
+        </div>
+    </header>
+
+    <main class="w-full">
+        <!-- 2. Division Section -->
+        <section id="division" class="min-h-screen w-full">
+            <!-- Full-screen map image -->
+            <div class="h-screen bg-cover bg-center flex items-center justify-center" style="background-image: url('https://i.ibb.co/CK2LBXCK/Screenshot-2025-08-13-at-6-36-12-PM.png');">
+                
+            </div>
+            
+            <!-- Content that appears on scroll -->
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+                <!-- Complete Division Info -->
+                <div class="reveal grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                    <div>
+                        <img src="https://i.ibb.co/CK2LBXCK/Screenshot-2025-08-13-at-6-36-12-PM.png" alt="Map of the division" class="rounded-lg shadow-2xl w-full h-auto">
+                    </div>
+                    <div class="text-left">
+                        <h3 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500 mb-4">Complete Division</h3>
+                        <p class="text-gray-300 mb-6">This section provides a detailed overview of the division, including all associated Metropolitan Statistical Areas (MSAs).</p>
+                        <div>
+                            <label for="msa-list" class="block mb-2 text-sm font-medium text-gray-400">MSA List for this Division:</label>
+                            <select id="msa-list" class="bg-gray-700 border border-gray-600 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5">
+                                <option selected>Choose an MSA</option>
+                                <option value="MSA1">Worcester, MA-CT MSA</option>
+                                <option value="MSA2">Springfield, MA-CT MSA</option>
+                                <option value="MSA3">Another MSA Example</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Philadelphia MSA Section -->
+                <div class="reveal py-10 border-t-2 border-gray-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                        <div class="order-last md:order-first">
+                            <h3 class="text-3xl font-bold mb-1">Philadelphia–Camden–Wilmington, PA–NJ–DE–MD</h3>
+                            <p class="text-xl font-semibold text-blue-400 mb-4">(Delaware Valley)</p>
+                            <a href="https://cheruthanreddy.github.io/delaware/" target="_blank" rel="noopener noreferrer" class="block group">
+                                <img src="https://i.ibb.co/1f5205mY/Screenshot-2025-08-13-at-3-07-43-AM.png" alt="Map of Philadelphia MSA" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105" onerror="this.onerror=null;this.src='https://placehold.co/600x400/374151/ff0000?text=Image+Failed+to+Load';">
+                            </a>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="text-2xl font-bold text-gray-200 mb-4">Counties Included</h4>
+                            <ul class="space-y-2 list-disc list-inside text-gray-300">
+                                <li>Philadelphia, PA</li><li>Bucks, PA</li><li>Montgomery, PA</li><li>Chester, PA</li><li>Delaware, PA</li><li>Burlington, NJ</li><li>Camden, NJ</li><li>Gloucester, NJ</li><li>Salem, NJ</li><li>New Castle, DE</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Guesstimates Section -->
+                    <div id="guesstimates" class="text-center mb-20">
+                        <h2 class="text-4xl font-bold mb-8">Guesstimates</h2>
+                        <div class="max-w-4xl mx-auto bg-gray-800 p-8 rounded-xl shadow-2xl">
+                            <div class="mb-6">
+                                <label for="population" class="block mb-2 text-lg font-medium text-gray-300">Enter MSA Population</label>
+                                <input type="number" id="population" value="6245050" class="bg-gray-700 text-center border border-gray-600 text-white text-2xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-xs mx-auto p-2.5">
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-white">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Bound Patients</p>
+                                    <p id="home-bound" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Physicians</p>
+                                    <p id="physicians" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-green-500 to-green-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">PG Groups</p>
+                                    <p id="pg-groups" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-yellow-500 to-yellow-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Health Agencies</p>
+                                    <p id="hh-agency" class="text-2xl font-bold">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CHC Listing Section (Philadelphia) -->
+                    <div>
+                        <h2 class="text-3xl font-bold mb-4 text-center">CHC Listing</h2>
+                        <!-- Toggle Switch -->
+                        <div class="flex justify-center items-center space-x-4 mb-8">
+                            <input type="radio" name="chc-toggle" id="chc-philly" class="hidden chc-toggle" checked>
+                            <label for="chc-philly" class="chc-toggle-label">Philadelphia County CHC</label>
+                            
+                            <input type="radio" name="chc-toggle" id="chc-other" class="hidden chc-toggle">
+                            <label for="chc-other" class="chc-toggle-label">Other Counties CHC</label>
+                        </div>
+
+                        <!-- Philadelphia CHC Content -->
+                        <div id="philly-chc-content" class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <a href="https://cheruthanreddy.github.io/hi/" target="_blank" rel="noopener noreferrer" class="block group">
+                                    <img src="https://i.ibb.co/kgtbwPhD/Screenshot-2025-08-13-at-3-16-16-AM.png" alt="Map of Philadelphia County CHC Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                                </a>
+                            </div>
+                            <div class="w-full">
+                                <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                                    <table class="min-w-full text-sm text-left text-gray-300">
+                                        <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Location Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Status</th></tr></thead>
+                                        <tbody>
+                                            <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Delaware Valley Community Health, Inc.</td><td class="px-6 py-4">850 N. 11th Street, Philadelphia, PA 19123</td><td class="px-6 py-4">FQHC</td></tr>
+                                            <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Fairmount Primary Care Center</td><td class="px-6 py-4">1929 W. Fairmount Avenue, Philadelphia, PA 19130</td><td class="px-6 py-4">FQHC</td></tr>
+                                            <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Maria de los Santos Health Center</td><td class="px-6 py-4">401 W. Allegheny Avenue, Philadelphia, PA 19133</td><td class="px-6 py-4">FQHC</td></tr>
+                                            <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/1HCNc5nSjWAg35LevsoheYOCLKWAiobzSFgdBx52rQa8/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="block">Click to view all CHC</a></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Other Counties CHC Content -->
+                        <div id="other-chc-content" class="hidden grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                            <div>
+                                <a href="https://cheruthanreddy.github.io/DELAWAREOTHERCOUNTIES/" target="_blank" rel="noopener noreferrer" class="block group">
+                                    <img src="https://i.ibb.co/JY7w6WJ/Screenshot-2025-08-13-at-3-19-30-AM.png" alt="Map of Other Counties CHC Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                                </a>
+                            </div>
+                            <div class="w-full">
+                                <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                                    <table class="min-w-full text-sm text-left text-gray-300">
+                                        <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Location Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Status</th></tr></thead>
+                                        <tbody>
+                                            <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">ChesPenn - Center for Family Health at Eastside</td><td class="px-6 py-4">125 East 9th Street, Chester, PA 19013</td><td class="px-6 py-4">FQHC</td></tr>
+                                            <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">ChesPenn - Center for Family Health at Coatesville</td><td class="px-6 py-4">744 East Lincoln Highway, Suite 410, Coatesville, PA 19320</td><td class="px-6 py-4">FQHC</td></tr>
+                                            <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">ChesPenn - Center for Family Health at Upper Darby</td><td class="px-6 py-4">2100 West Chester Pike, Upper Darby, PA 19082</td><td class="px-6 py-4">FQHC</td></tr>
+                                            <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/1HCNc5nSjWAg35LevsoheYOCLKWAiobzSFgdBx52rQa8/edit?gid=789232982#gid=789232982" target="_blank" rel="noopener noreferrer" class="block">Click to view all CHC</a></td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- VA Listing Section (Philadelphia) -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mt-20">
+                         <div class="order-last md:order-first">
+                            <h3 class="text-3xl font-bold mb-4">VA Listing</h3>
+                            <a href="https://cheruthanreddy.github.io/delawareva/" target="_blank" rel="noopener noreferrer" class="block group">
+                                <img src="https://i.ibb.co/60t2cXTb/Screenshot-2025-08-13-at-3-29-56-AM.png" alt="Map of VA Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                            </a>
+                        </div>
+                        <div class="w-full">
+                            <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                                <table class="min-w-full text-sm text-left text-gray-300">
+                                    <thead class="text-xs text-gray-200 uppercase bg-gray-700">
+                                        <tr><th scope="col" class="px-6 py-3">Facility Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Type</th></tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Corporal Michael J. Crescenz Department of Veterans Affairs Medical Center</td><td class="px-6 py-4">3900 Woodland Avenue, Philadelphia, PA 19104</td><td class="px-6 py-4">VAMC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Wilmington VA Medical Center</td><td class="px-6 py-4">1601 Kirkwood Highway, Wilmington, DE 19805</td><td class="px-6 py-4">VAMC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Victor J. Saracini Department of Veterans Affairs Outpatient Clinic</td><td class="px-6 py-4">444 North 3rd Street, Philadelphia, PA 19123</td><td class="px-6 py-4">CBOC</td></tr>
+                                        <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/1Tn1DwZjRgpfIl7WHw3pdbkisWK1NWyP8IhIrkVhcQFA/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="block">Click to view all VA</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Targeted CHC Section -->
+                    <section id="targeted-chc" class="mt-20 py-20 border-t-2 border-gray-700">
+                        <h2 class="text-4xl font-bold text-center mb-4">Targeted CHC</h2>
+                        <div class="text-center mb-8">
+                            <img src="https://i.ibb.co/ds79BsgP/Screenshot-2025-08-13-at-3-37-41-AM.png" alt="GPHA Logo" class="mx-auto mb-4 h-24">
+                            <h3 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">GREATER PHILADELPHIA HEALTH ACTION ( GPHA )</h3>
+                        </div>
+
+                        <div class="max-w-4xl mx-auto space-y-12">
+                            <div>
+                                <h4 class="text-2xl font-bold mb-3">SERVICES</h4>
+                                <div class="w-full h-auto overflow-hidden rounded-lg shadow-2xl">
+                                    <img src="https://i.ibb.co/svXND6XX/visual-selection-8.png" alt="GPHA Services" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-2xl font-bold mb-3">STRUCTURE</h4>
+                                <p class="text-gray-300 leading-relaxed mb-6">Greater Philadelphia Health Action, Inc. (GPHA) operates 12 convenient locations throughout Philadelphia, which strengthens its accessibility across multiple neighborhoods. This decentralized care model, combined with a team-based clinical approach, supports our goal of expanding patient access and coordination across the Doctor Alliance framework.</p>
+                                <div class="w-full h-auto overflow-hidden rounded-lg shadow-2xl">
+                                    <img src="https://i.ibb.co/chshCwDF/Screenshot-2025-08-13-at-3-54-28-AM.png" alt="GPHA Structure" class="w-full h-full object-cover">
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="text-2xl font-bold mb-3">Reason for Onboarding:</h4>
+                                <p class="text-gray-300 leading-relaxed mb-4">GPHA is a “total healthcare provider,” serving over 85,000 patients throughout the Delaware Valley area.</p>
+                                <blockquote class="border-l-4 border-blue-500 pl-4 italic text-gray-400">
+                                    “In addition, we offer the convenience of electronic medical records and onsite labs, which makes access to test results and patient history much faster.”
+                                </blockquote>
+                                <p class="text-gray-300 leading-relaxed mt-4">This aligns well with our Doctor Alliance model, which emphasizes efficient care coordination, data accessibility, and seamless provider communication. Given this shared approach to integrated care and patient-centered technology, we believe GPHA is a strong fit and recommend moving forward with onboarding this CHC.</p>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- Account Map Section -->
+                    <section id="account-map" class="mt-20 py-20 border-t-2 border-gray-700">
+                        <h2 class="text-4xl font-bold text-center mb-4">ACCOUNT MAP</h2>
+                        <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">CHC Contacts for Portal Launch (Target: Digitalizing fax/document workflows for physician orders & operations)</p>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <!-- Card 1: Primary Decision Makers -->
+                            <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                                <div class="p-4 bg-red-600 text-white">
+                                    <h3 class="text-xl font-bold">Primary Decision Makers</h3>
+                                    <p class="text-sm opacity-90">Executive Sponsors with authority to approve adoption.</p>
+                                </div>
+                                <ul class="p-6 space-y-4 text-gray-300">
+                                    <li><strong>Burnette Vidal, PhD</strong> – Chief Operating Officer (direct oversight of day-to-day operations; likely to greenlight operational process changes)</li>
+                                    <li><strong>Dr. Janet E. Young</strong> – Chief Medical Officer (oversees clinical workflows including physician orders)</li>
+                                    <li><strong>Sarah Lai, MBA, RN, BSN</strong> – Chief Medical Patient Services (operational leader for patient service workflows — high influence on order process changes)</li>
+                                    <li><strong>Zelealem Negassa, CISSP, PMP</strong> – Chief Information Officer (critical for IT integration with your portal)</li>
+                                </ul>
+                            </div>
+
+                            <!-- Card 2: Key Operational Contacts -->
+                            <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                                <div class="p-4 bg-blue-600 text-white">
+                                    <h3 class="text-xl font-bold">Key Operational Contacts</h3>
+                                    <p class="text-sm opacity-90">Workflow Owners directly involved in managing documents.</p>
+                                </div>
+                                <ul class="p-6 space-y-4 text-gray-300">
+                                    <li><strong>Nicole Kazadi</strong> – Medical Patient Services Division Operation Director (likely owns current fax/document handling for physician orders)</li>
+                                    <li><strong>Kalkidan Damtew</strong> – Medical Patient Services Division Head Coordinator (coordinates operational staff; can influence adoption)</li>
+                                    <li><strong>Yolounda Harris-Barlow</strong> – Director Health Information Technology (hands-on with electronic systems, fax servers, and portals)</li>
+                                    <li><strong>Davon Bonelli</strong> – Health Information Management Supervisor (manages the records team that actually processes and files physician orders)</li>
+                                    <li><strong>Ramona Rouni, MSC/CRM</strong> – Director of Quality & Risk Management (ensures compliance; will be interested in secure, auditable digital workflows)</li>
+                                </ul>
+                            </div>
+
+                            <!-- Card 3: Influencers / Champions -->
+                            <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                                <div class="p-4 bg-green-600 text-white">
+                                    <h3 class="text-xl font-bold">Influencers / Champions</h3>
+                                    <p class="text-sm opacity-90">Frontline Operations & Admin Leaders who will use the portal daily.</p>
+                                </div>
+                                <ul class="p-6 space-y-4 text-gray-300">
+                                    <li><strong>Cheyanna Smith</strong> – Health Center Administrator, Woodland Avenue Health Center</li>
+                                    <li><strong>Riley Glaser</strong> – Health Center Administrator, Chinatown Medical Services</li>
+                                    <li><strong>Jessycah Foreman-Johnson</strong> – Senior Health Center Administrator, Hunting Park Health Center</li>
+                                    <li><strong>Connie Rodriguez</strong> – Health Center Administrator, Frankford Avenue Health Center</li>
+                                    <li><strong>Wyntre Jackson</strong> – Health Center Administrator, Frankford Avenue Health Center</li>
+                                    <li><strong>Yahaya Enakhimion</strong> – Associate Clinical Director, WAHC (can connect you to physicians and clinical staff)</li>
+                                </ul>
+                            </div>
+
+                            <!-- Card 4: IT & Integration Support -->
+                            <div class="bg-gray-800 rounded-lg shadow-xl overflow-hidden">
+                                <div class="p-4 bg-purple-600 text-white">
+                                    <h3 class="text-xl font-bold">IT & Integration Support</h3>
+                                    <p class="text-sm opacity-90">Contacts for ensuring technical onboarding and compatibility.</p>
+                                </div>
+                                <ul class="p-6 space-y-4 text-gray-300">
+                                    <li><strong>Zelealem Negassa</strong> – CIO (top-level IT strategy)</li>
+                                    <li><strong>Yolounda Harris-Barlow</strong> – Director Health Information Technology (operational IT lead)</li>
+                                    <li><strong>Mengste Thomas</strong> – Infrastructure Security Manager (ensures portal security compliance)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- GPHA Resources Section -->
+                    <section id="gpha-resources" class="mt-12 py-12 text-center border-t-2 border-gray-700">
+                        <h2 class="text-3xl font-bold mb-8">GPHA Resources</h2>
+                        <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+                            <a href="https://docs.google.com/spreadsheets/d/1jRAClcXlu6CTvKp1ep0lamLuJWocJFP6BxWvw8qRxKM/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="cool-button bg-blue-600 text-white font-bold py-3 px-8 rounded-lg text-lg">
+                                All Locations of GPHA
+                            </a>
+                            <a href="https://docs.google.com/spreadsheets/d/1jRAClcXlu6CTvKp1ep0lamLuJWocJFP6BxWvw8qRxKM/edit?gid=834541732#gid=834541732" target="_blank" rel="noopener noreferrer" class="cool-button bg-purple-600 text-white font-bold py-3 px-8 rounded-lg text-lg">
+                                Physician Listing
+                            </a>
+                        </div>
+                    </section>
+                </div>
+
+                <!-- Allentown MSA Section -->
+                <div class="reveal py-10 border-t-2 border-gray-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                        <div class="order-last md:order-first">
+                            <h3 class="text-3xl font-bold mb-1">Allentown–Bethlehem–Easton, PA–NJ</h3>
+                            <p class="text-xl font-semibold text-blue-400 mb-4">(Lehigh Valley)</p>
+                            <a href="https://cheruthanreddy.github.io/LEHIGHVALLEY_COUNTIES/" target="_blank" rel="noopener noreferrer" class="block group">
+                                <img src="https://i.ibb.co/BVLnDs25/Screenshot-2025-08-13-at-3-57-44-PM.png" alt="Map of Allentown MSA" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                            </a>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="text-2xl font-bold text-gray-200 mb-4">Counties Included</h4>
+                            <ul class="space-y-2 list-disc list-inside text-gray-300">
+                                <li>Lehigh, PA</li>
+                                <li>Northampton, PA</li>
+                                <li>Carbon, PA</li>
+                                <li>Warren, NJ</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Allentown Guesstimates Section -->
+                    <div id="guesstimates-allentown" class="text-center mb-20">
+                        <h2 class="text-4xl font-bold mb-8">Guesstimates</h2>
+                        <div class="max-w-4xl mx-auto bg-gray-800 p-8 rounded-xl shadow-2xl">
+                            <div class="mb-6">
+                                <label for="population-allentown" class="block mb-2 text-lg font-medium text-gray-300">Enter MSA Population</label>
+                                <input type="number" id="population-allentown" value="886418" class="bg-gray-700 text-center border border-gray-600 text-white text-2xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-xs mx-auto p-2.5">
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-white">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Bound Patients</p>
+                                    <p id="home-bound-allentown" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Physicians</p>
+                                    <p id="physicians-allentown" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-green-500 to-green-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">PG Groups</p>
+                                    <p id="pg-groups-allentown" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-yellow-500 to-yellow-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Health Agencies</p>
+                                    <p id="hh-agency-allentown" class="text-2xl font-bold">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Allentown CHC Listing Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-4">CHC Listing</h3>
+                            <a href="https://cheruthanreddy.github.io/lehighchc/" target="_blank" rel="noopener noreferrer" class="block group">
+                                <img src="https://i.ibb.co/hRzfFJ59/Screenshot-2025-08-13-at-3-59-50-PM.png" alt="Map of Lehigh Valley CHC Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                            </a>
+                        </div>
+                        <div class="w-full">
+                            <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                                <table class="min-w-full text-sm text-left text-gray-300">
+                                    <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Location Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Status</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Neighborhood Health Centers of the Lehigh Valley</td><td class="px-6 py-4">160 Hamilton St, Allentown, PA 18101</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Neighborhood Health Centers of the Lehigh Valley - Alliance Hall</td><td class="px-6 py-4">634 W Chew St, Allentown, PA 18102</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Neighborhood Health Centers of the Lehigh Valley - Two Rivers Health & Wellness</td><td class="px-6 py-4">1101 Northampton St, Easton, PA 18042</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/1xzt5I8Dsekl13H_GoQNKus467ITRLxvoAoFuVkIHNbc/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="block">Click to view all CHC</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Allentown VA Listing Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div>
+                           <h3 class="text-3xl font-bold mb-4">VA Listing</h3>
+                           <a href="https://cheruthanreddy.github.io/LEHIGHVA/" target="_blank" rel="noopener noreferrer" class="block group">
+                               <img src="https://i.ibb.co/jPmphPTp/Screenshot-2025-08-13-at-4-02-14-PM.png" alt="Map of Lehigh Valley VA Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                           </a>
+                       </div>
+                       <div class="w-full">
+                           <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                               <table class="min-w-full text-sm text-left text-gray-300">
+                                   <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Facility Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Type</th></tr></thead>
+                                   <tbody>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Allentown VA Clinic</td><td class="px-6 py-4">3110 Hamilton Blvd, Allentown, PA 18103</td><td class="px-6 py-4">CBOC</td></tr>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Department of Veterans Affairs</td><td class="px-6 py-4">1101-1199 S 12th St, Allentown, PA 18103</td><td class="px-6 py-4">VAMC</td></tr>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Slate Belt VA Clinic</td><td class="px-6 py-4">6292 Sullivan Trail, Nazareth, PA 18064</td><td class="px-6 py-4">CBOC</td></tr>
+                                       <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/1xzt5I8Dsekl13H_GoQNKus467ITRLxvoAoFuVkIHNbc/edit?gid=83217680#gid=83217680" target="_blank" rel="noopener noreferrer" class="block">Click to view all VA</a></td></tr>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+
+                <!-- Scranton MSA Section -->
+                <div class="reveal py-10 border-t-2 border-gray-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                        <div class="order-last md:order-first">
+                            <h3 class="text-3xl font-bold mb-1">Scranton–Wilkes-Barre–Hazleton, PA</h3>
+                            <p class="text-xl font-semibold text-blue-400 mb-4">(WYOMING VALLEY)</p>
+                            <a href="#" class="block group">
+                                <img src="https://i.ibb.co/yFWxFzcB/Screenshot-2025-08-13-at-4-23-19-PM.png" alt="Map of Scranton MSA" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                            </a>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="text-2xl font-bold text-gray-200 mb-4">Counties Included</h4>
+                            <ul class="space-y-2 list-disc list-inside text-gray-300">
+                                <li>Lackawanna, PA</li>
+                                <li>Luzerne, PA</li>
+                                <li>Wyoming, PA</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Scranton Guesstimates Section -->
+                    <div id="guesstimates-scranton" class="text-center mb-20">
+                        <h2 class="text-4xl font-bold mb-8">Guesstimates</h2>
+                        <div class="max-w-4xl mx-auto bg-gray-800 p-8 rounded-xl shadow-2xl">
+                            <div class="mb-6">
+                                <label for="population-scranton" class="block mb-2 text-lg font-medium text-gray-300">Enter MSA Population</label>
+                                <input type="number" id="population-scranton" value="574009" class="bg-gray-700 text-center border border-gray-600 text-white text-2xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-xs mx-auto p-2.5">
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-white">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Bound Patients</p>
+                                    <p id="home-bound-scranton" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Physicians</p>
+                                    <p id="physicians-scranton" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-green-500 to-green-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">PG Groups</p>
+                                    <p id="pg-groups-scranton" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-yellow-500 to-yellow-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Health Agencies</p>
+                                    <p id="hh-agency-scranton" class="text-2xl font-bold">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scranton CHC Listing Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-4">CHC Listing</h3>
+                            <a href="https://cheruthanreddy.github.io/wyoming-chc/" target="_blank" rel="noopener noreferrer" class="block group">
+                                <img src="https://i.ibb.co/dwKfdnvH/Screenshot-2025-08-13-at-4-25-27-PM.png" alt="Map of Wyoming Valley CHC Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                            </a>
+                        </div>
+                        <div class="w-full">
+                            <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                                <table class="min-w-full text-sm text-left text-gray-300">
+                                    <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Location Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Status</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">The Wright Center for Community Health - Scranton Practice</td><td class="px-6 py-4">501 S Washington Ave, Scranton, PA 18505</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">The Wright Center for Community Health - Jermyn Practice</td><td class="px-6 py-4">5 S Washington Ave, Jermyn, PA 18433</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">The Wright Center for Community Health - Mid Valley Practice</td><td class="px-6 py-4">1100 Main St, Peckville, PA 18452</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/12htxeoc8YEZNCkE0krT2EGdsXu4V4iC7otRE8XBjd_Q/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="block">Click to view all CHC</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Scranton VA Listing Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div>
+                           <h3 class="text-3xl font-bold mb-4">VA Listing</h3>
+                           <a href="https://cheruthanreddy.github.io/wyomingva/" target="_blank" rel="noopener noreferrer" class="block group">
+                               <img src="https://i.ibb.co/KcWF3n8b/Screenshot-2025-08-13-at-4-27-18-PM.png" alt="Map of Wyoming Valley VA Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                           </a>
+                       </div>
+                       <div class="w-full">
+                           <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                               <table class="min-w-full text-sm text-left text-gray-300">
+                                   <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Facility Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Type</th></tr></thead>
+                                   <tbody>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Wilkes-Barre VA Medical Center</td><td class="px-6 py-4">1111 E End Blvd, Wilkes-Barre, PA 18711</td><td class="px-6 py-4">VAMC</td></tr>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Scranton Vet Center</td><td class="px-6 py-4">319-321 N Washington Ave, Scranton, PA 18503</td><td class="px-6 py-4">Vet Center</td></tr>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Department of Veterans Affairs</td><td class="px-6 py-4">325 New St, Wilkes-Barre, PA 18702</td><td class="px-6 py-4">VAMC</td></tr>
+                                       <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/12htxeoc8YEZNCkE0krT2EGdsXu4V4iC7otRE8XBjd_Q/edit?gid=1203500013#gid=1203500013" target="_blank" rel="noopener noreferrer" class="block">Click to view all VA</a></td></tr>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+
+                <!-- Youngstown MSA Section -->
+                <div class="reveal py-10 border-t-2 border-gray-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                        <div class="order-last md:order-first">
+                            <h3 class="text-3xl font-bold mb-1">Youngstown–Warren–Boardman, OH–PA</h3>
+                            <p class="text-xl font-semibold text-blue-400 mb-4">(MAHONING VALLEY)</p>
+                            <a href="#" class="block group">
+                                <img src="https://i.ibb.co/N6tGJsb0/Screenshot-2025-08-13-at-5-18-07-PM.png" alt="Map of Youngstown MSA" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                            </a>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="text-2xl font-bold text-gray-200 mb-4">Counties Included</h4>
+                            <ul class="space-y-2 list-disc list-inside text-gray-300">
+                                <li>Mahoning, OH</li>
+                                <li>Trumbull, OH</li>
+                                <li>Mercer, PA</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Youngstown Guesstimates Section -->
+                    <div id="guesstimates-youngstown" class="text-center mb-20">
+                        <h2 class="text-4xl font-bold mb-8">Guesstimates</h2>
+                        <div class="max-w-4xl mx-auto bg-gray-800 p-8 rounded-xl shadow-2xl">
+                            <div class="mb-6">
+                                <label for="population-youngstown" class="block mb-2 text-lg font-medium text-gray-300">Enter MSA Population</label>
+                                <input type="number" id="population-youngstown" value="430591" class="bg-gray-700 text-center border border-gray-600 text-white text-2xl rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full max-w-xs mx-auto p-2.5">
+                            </div>
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-white">
+                                <div class="bg-gradient-to-br from-blue-500 to-blue-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Bound Patients</p>
+                                    <p id="home-bound-youngstown" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-purple-500 to-purple-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Physicians</p>
+                                    <p id="physicians-youngstown" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-green-500 to-green-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">PG Groups</p>
+                                    <p id="pg-groups-youngstown" class="text-2xl font-bold">0</p>
+                                </div>
+                                <div class="bg-gradient-to-br from-yellow-500 to-yellow-700 p-4 rounded-lg">
+                                    <p class="text-sm opacity-80">Home Health Agencies</p>
+                                    <p id="hh-agency-youngstown" class="text-2xl font-bold">0</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Youngstown CHC Listing Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
+                        <div>
+                            <h3 class="text-3xl font-bold mb-4">CHC Listing</h3>
+                            <a href="https://cheruthanreddy.github.io/mahoning_chc/" target="_blank" rel="noopener noreferrer" class="block group">
+                                <img src="https://i.ibb.co/NdtpnFrs/Screenshot-2025-08-13-at-5-20-08-PM.png" alt="Map of Mahoning Valley CHC Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                            </a>
+                        </div>
+                        <div class="w-full">
+                            <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                                <table class="min-w-full text-sm text-left text-gray-300">
+                                    <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Location Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Status</th></tr></thead>
+                                    <tbody>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">ONE Health Ohio - Youngstown</td><td class="px-6 py-4">726 Wick Ave, Youngstown, OH 44505</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">ONE Health Ohio - Warren</td><td class="px-6 py-4">716 Tod Ave NW, Warren, OH 44485</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">ONE Health Ohio - Newton Falls</td><td class="px-6 py-4">10 S Canal St, Newton Falls, OH 44444</td><td class="px-6 py-4">FQHC</td></tr>
+                                        <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/1EYIfEo11hr7HZk79lpOkJNlXHJELiRfdnpl84LO9wY4/edit?gid=0#gid=0" target="_blank" rel="noopener noreferrer" class="block">Click to view all CHC</a></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Youngstown VA Listing Section -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                        <div>
+                           <h3 class="text-3xl font-bold mb-4">VA Listing</h3>
+                           <a href="#" class="block group">
+                               <img src="https://i.ibb.co/XkVq27Vt/Screenshot-2025-06-21-at-12-39-55-AM.png" alt="Map of Mahoning Valley VA Locations" class="rounded-lg shadow-2xl w-full h-auto transition-transform duration-300 group-hover:scale-105">
+                           </a>
+                       </div>
+                       <div class="w-full">
+                           <div class="overflow-x-auto bg-gray-800 rounded-lg">
+                               <table class="min-w-full text-sm text-left text-gray-300">
+                                   <thead class="text-xs text-gray-200 uppercase bg-gray-700"><tr><th scope="col" class="px-6 py-3">Facility Name</th><th scope="col" class="px-6 py-3">Address</th><th scope="col" class="px-6 py-3">Type</th></tr></thead>
+                                   <tbody>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Youngstown VA Clinic</td><td class="px-6 py-4">120 E County Line Rd, Youngstown, OH 44512</td><td class="px-6 py-4">CBOC</td></tr>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Trumbull County VA Clinic</td><td class="px-6 py-4">1460 Tod Ave NW, Warren, OH 44485</td><td class="px-6 py-4">CBOC</td></tr>
+                                       <tr class="border-b border-gray-700"><td class="px-6 py-4 font-medium">Lawrence County VA Clinic</td><td class="px-6 py-4">111 Enclave Dr, New Castle, PA 16105</td><td class="px-6 py-4">CBOC</td></tr>
+                                       <tr class="bg-gray-700 hover:bg-blue-600 transition-colors duration-200"><td colspan="3" class="text-center px-6 py-4 font-medium text-blue-300"><a href="https://docs.google.com/spreadsheets/d/1EYIfEo11hr7HZk79lpOkJNlXHJELiRfdnpl84LO9wY4/edit?gid=1932923329#gid=1932923329" target="_blank" rel="noopener noreferrer" class="block">Click to view all VA</a></td></tr>
+                                   </tbody>
+                               </table>
+                           </div>
+                       </div>
+                   </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Statistical Area Section -->
+        <section id="statistical-area" class="min-h-screen w-full py-20 px-4 sm:px-6 lg:px-8">
+            <h2 class="text-4xl font-bold text-center mb-10 text-white">Statistical Area Content</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+                <a href="file:///Users/cheruthanreddy/Downloads/network_graph_working_v2%20(1).html" class="cool-button bg-blue-600 text-white font-bold py-8 px-4 rounded-lg text-xl flex items-center justify-center">
+                    HHA Network
+                </a>
+                <a href="file:///Users/cheruthanreddy/Downloads/agency_directory_final_update.html" class="cool-button bg-purple-600 text-white font-bold py-8 px-4 rounded-lg text-xl flex items-center justify-center">
+                    Agency Directory
+                </a>
+                <a href="file:///Users/cheruthanreddy/Downloads/physician_directory_dashboard.html" class="cool-button bg-green-600 text-white font-bold py-8 px-4 rounded-lg text-xl flex items-center justify-center">
+                    Physician Directory
+                </a>
+                <a href="target_pgs.html" target="_blank" class="cool-button bg-red-600 text-white font-bold py-8 px-4 rounded-lg text-xl flex items-center justify-center">
+                    Target PGs
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-900 text-center p-4">
+        <p class="text-gray-500">&copy; 2024 Team Worcester-Springfield. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // --- Guesstimates Calculator Logic (All MSAs) ---
+            function setupGuesstimates(containerId, populationId) {
+                const populationInput = document.getElementById(populationId);
+                const container = document.getElementById(containerId);
+                if (!populationInput || !container) return;
+
+                const homeBoundEl = container.querySelector('[id^="home-bound"]');
+                const physiciansEl = container.querySelector('[id^="physicians"]');
+                const pgGroupsEl = container.querySelector('[id^="pg-groups"]');
+                const hhAgencyEl = container.querySelector('[id^="hh-agency"]');
+
+                function calculate() {
+                    const population = parseInt(populationInput.value, 10) || 0;
+                    const homeBound = Math.round(population * 0.01);
+                    const physicians = Math.round(homeBound * 0.10);
+                    const pgGroups = Math.round(physicians * 0.50);
+                    const hhAgency = Math.round(physicians * 0.10);
+                    homeBoundEl.textContent = homeBound.toLocaleString();
+                    physiciansEl.textContent = physicians.toLocaleString();
+                    pgGroupsEl.textContent = pgGroups.toLocaleString();
+                    hhAgencyEl.textContent = hhAgency.toLocaleString();
+                }
+                populationInput.addEventListener('input', calculate);
+                calculate(); // Initial calculation
+            }
+
+            setupGuesstimates('guesstimates', 'population');
+            setupGuesstimates('guesstimates-allentown', 'population-allentown');
+            setupGuesstimates('guesstimates-scranton', 'population-scranton');
+            setupGuesstimates('guesstimates-youngstown', 'population-youngstown');
+
+            // --- Scroll Animation Logic ---
+            const revealElements = document.querySelectorAll('.reveal');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+            revealElements.forEach(el => { observer.observe(el); });
+
+            // --- CHC Toggle Logic ---
+            const chcPhillyRadio = document.getElementById('chc-philly');
+            const chcOtherRadio = document.getElementById('chc-other');
+            const phillyContent = document.getElementById('philly-chc-content');
+            const otherContent = document.getElementById('other-chc-content');
+
+            function handleCHCToggle() {
+                if (!chcPhillyRadio || !phillyContent || !otherContent) return;
+                if (chcPhillyRadio.checked) {
+                    phillyContent.classList.remove('hidden');
+                    otherContent.classList.add('hidden');
+                } else {
+                    phillyContent.classList.add('hidden');
+                    otherContent.classList.remove('hidden');
+                }
+            }
+            if (chcPhillyRadio) {
+                chcPhillyRadio.addEventListener('change', handleCHCToggle);
+            }
+            if(chcOtherRadio) {
+                chcOtherRadio.addEventListener('change', handleCHCToggle);
+            }
+            handleCHCToggle();
+        });
+    </script>
+</body>
+</html>
